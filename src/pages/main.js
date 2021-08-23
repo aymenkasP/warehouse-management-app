@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function myNots() {
+export default function main() {
     return (
         <div>
-            nots
+            
         </div>
     )
 }
