@@ -11,7 +11,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import useStyles from './useStyles'
-
+import { SwipeableDrawer } from '@material-ui/core';
+import Drawer from './Drawer'
 export default function Appbar() {
     const classes = useStyles();
     
@@ -51,6 +52,7 @@ export default function Appbar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Log out</MenuItem>
     </Menu>
   );
 
@@ -136,6 +138,7 @@ export default function Appbar() {
           </div>
         </Toolbar>
       </AppBar>
+              <Drawer />
       {renderMobileMenu}
       {renderMenu}
     </div>
