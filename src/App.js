@@ -13,7 +13,8 @@ function App() {
 
   return (
     <div className="App"> 
-        <AppBar />
+      <AppBar />
+      
         <Switch>
               <Route path="/" exact component={main} /> 
               <Route path="/home" component={home} /> 
@@ -23,6 +24,7 @@ function App() {
               <Route path="/stoke-data" component={stokeData} />
               <Route path="/my-nots" component={myNots} />
         </Switch>
+        
     </div>
   );
 }
