@@ -16,6 +16,11 @@ import NoteIcon from '@material-ui/icons/Note';
 import StoreMallDirectoryIcon from '@material-ui/icons/StoreMallDirectory';
 import AddWarehouse from  '../Add/AddWarehous'
 
+
+//redux
+import { useSelector, useDispatch } from 'react-redux'
+import { handleOpen, handleClose } from '../.././redux/features/AddForm/AddFormSlice'
+
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -31,18 +36,9 @@ const useStyles = makeStyles({
 
 export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
   const classes = useStyles();
- 
+ const Dispatch = useDispatch()
 
-  const [open, setOpen] = useState(false);
-
-  console.log(open)
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   const list = (anchor) => (
     <div
@@ -56,14 +52,14 @@ export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
       <List>
         
 
-          <ListItem button onClick={() => !open? handleOpen() : handleClose()} >
+          <ListItem button   onClick ={()=> Dispatch(handleOpen())}  >
             <ListItemIcon>
-              <AddIcon /> 
+              <AddIcon  /> 
             </ListItemIcon>
             <ListItemText primary="Add warehouse" />
           </ListItem>
 
-            <AddWarehouse open ={open} setOpen={setOpen} />
+            
 
           <ListItem button>
             <ListItemIcon>

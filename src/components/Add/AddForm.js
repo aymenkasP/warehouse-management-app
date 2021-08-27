@@ -1,6 +1,8 @@
 import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
-import SimpleModal from './AddWarehous';
+
+import {  useDispatch } from 'react-redux'
+import {  handleClose } from '../../redux/features/AddForm/AddFormSlice'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,17 +17,16 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const AddForm = ({setOpen}) => {
+const AddForm = () => {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
+    const Dispatch =useDispatch()
 
-    function rand() {
-        return Math.round(Math.random() * 20) - 10;
-      }
+    
 
     function getModalStyle() {
-        const top = 50 + rand();
-        const left = 50 + rand();
+        const top = 20
+        const left = 50
       
         return {
           top: `${top}%`,
@@ -41,7 +42,7 @@ const AddForm = ({setOpen}) => {
             <p id="simple-modal-description">
                 Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </p>
-        <Button>
+        <Button onClick={()=> Dispatch(handleClose())} >
             Close
         </Button>
     </div>

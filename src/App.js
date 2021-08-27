@@ -7,14 +7,27 @@ import main from "./pages/main";
 import home from "./pages/home";
 import { Switch,Route  } from "react-router-dom";
 import AppBar from './components/AppBar/Appbar';
+import Addwarehouse from './components/Add/AddWarehous';
+import { useState } from 'react';
 
 
 function App() {
 
+  const [open, setOpen] = useState(false);
+
+  console.log(open)
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="App"> 
-      <AppBar />
-      
+      <AppBar handleOpen={handleOpen} handleClose={handleClose} />
+      <Addwarehouse open ={open} setOpen={setOpen} />
         <Switch>
               <Route path="/" exact component={main} /> 
               <Route path="/home" component={home} /> 

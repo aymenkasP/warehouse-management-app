@@ -2,10 +2,15 @@ import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import AddForm from './AddForm';
 
+import { useSelector, useDispatch } from 'react-redux'
+import { handleOpen, handleClose } from '../../redux/features/AddForm/AddFormSlice'
 
-export default function SimpleModal({open , handleClose}) {
+
+export default function SimpleModal() {
  
- 
+const open = useSelector(state => state.AddForm.value)
+console.log(open)
+ const Dispatch = useDispatch()
 
 
 
@@ -17,12 +22,12 @@ export default function SimpleModal({open , handleClose}) {
       </button> */}
       <Modal
         open={open}
-        onClose={handleClose}
-        onKeyDown={handleClose}
+        onClose={()=> Dispatch(handleClose())}
+        onKeyDown={()=> Dispatch(handleClose())}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >
-        {<AddForm  />}
+        {<AddForm   />}
       </Modal>
     </div>
   );
