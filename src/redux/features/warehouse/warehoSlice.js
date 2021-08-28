@@ -5,18 +5,18 @@ import { createSlice } from '@reduxjs/toolkit'
 export const warehoSlice = createSlice({
     name: 'warehouse',
     initialState: {
-    value: 0,
+    warehouseInfo:[]
   },
 
   reducers : {
-      addOne : (state) => {
-          state.value =+ 1
+      UpdatePage : (state, action) => {
+          state.warehouseInfo = action.payload
       },
   }
 
 })
 
 
-export const { addOne } = warehoSlice.actions
+export const { UpdatePage } = warehoSlice.actions
 
 export default warehoSlice.reducer

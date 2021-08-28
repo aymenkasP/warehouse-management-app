@@ -23,7 +23,7 @@ console.log(open)
       <Modal
         open={open}
         onClose={()=> Dispatch(handleClose())}
-        onKeyDown={()=> Dispatch(handleClose())}
+        
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

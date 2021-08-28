@@ -1,8 +1,9 @@
 import { Button, makeStyles } from '@material-ui/core';
 import React from 'react';
+import { useForm } from "react-hook-form";
 
-import {  useDispatch } from 'react-redux'
-import {  handleClose } from '../../redux/features/AddForm/AddFormSlice'
+import {  useDispatch , useSelector } from 'react-redux'
+import {  handleClose,  addWarehouseFun } from '../../redux/features/AddForm/AddFormSlice'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,13 @@ const useStyles = makeStyles((theme) => ({
 const AddForm = () => {
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
+    const my_warehouse = useSelector( state => state.AddForm.warehouseInfo)
     const Dispatch =useDispatch()
+
+      console.log({warehouse: my_warehouse})
+
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+     const onSubmit = data => Dispatch(addWarehouseFun(data))
 
     
 
@@ -34,14 +41,23 @@ const AddForm = () => {
           transform: `translate(-${top}%, -${left}%)`,
         };
       }
-
+      console.log(watch("example")); 
 
     return (
         <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Text in a modal</h2>
-            <p id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            {/* register your input into the hook by invoking the "register" function */}
+            <input defaultValue="Name" {...register("warehouseName")} />
+            
+            {/* include validation with required or other standard HTML validation rules */}
+            <input {...register("space", { required: true })} /> <span>m²</span>
+            {/* errors will return when field validation fails  */}
+            {errors.exampleRequired && <span>This field is required</span>}
+            
+            <input {...register("description")} /> <span>m²</span>
+
+            <input type="submit" />
+          </form>
         <Button onClick={()=> Dispatch(handleClose())} >
             Close
         </Button>

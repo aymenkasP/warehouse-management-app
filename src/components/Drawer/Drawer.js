@@ -14,12 +14,12 @@ import AddIcon from '@material-ui/icons/Add';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import NoteIcon from '@material-ui/icons/Note';
 import StoreMallDirectoryIcon from '@material-ui/icons/StoreMallDirectory';
-import AddWarehouse from  '../Add/AddWarehous'
 
+import { useHistory } from "react-router-dom";
 
 //redux
-import { useSelector, useDispatch } from 'react-redux'
-import { handleOpen, handleClose } from '../.././redux/features/AddForm/AddFormSlice'
+import {useDispatch } from 'react-redux'
+import { handleOpen } from '../.././redux/features/AddForm/AddFormSlice'
 
 const useStyles = makeStyles({
   list: {
@@ -37,6 +37,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
   const classes = useStyles();
  const Dispatch = useDispatch()
+ const History = useHistory()
 
   
 
@@ -46,7 +47,7 @@ export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
-     
+      onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
@@ -61,21 +62,21 @@ export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
 
             
 
-          <ListItem button>
+          <ListItem button   onClick={() => History.push("/home")}>
             <ListItemIcon>
               <StoreMallDirectoryIcon /> 
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button  onClick={() => History.push("/my-warehouse")} >
             <ListItemIcon>
               <HomeWorkIcon /> 
             </ListItemIcon>
             <ListItemText primary="My warehouse" />
           </ListItem>
 
-          <ListItem button>
+          <ListItem button onClick={() => History.push("/my-nots")} >
             <ListItemIcon>
               <NoteIcon /> 
             </ListItemIcon>
@@ -90,8 +91,6 @@ export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
   return (
     <div>
       
-        <React.Fragment >
-          <Button onClick={toggleDrawer('left', true)}>{'left'}</Button>
           <SwipeableDrawer
             anchor={'left'}
             open={state['left']}
@@ -100,7 +99,7 @@ export default function SwipeableTemporaryDrawer({toggleDrawer , state}) {
           >
             {list('left')}
           </SwipeableDrawer>
-        </React.Fragment>
+      
     
     </div>
   );

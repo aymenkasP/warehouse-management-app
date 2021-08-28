@@ -147,7 +147,7 @@ export default function PrimarySearchAppBar() {
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
+          popup="true"
           color="inherit"
         >
           <AccountCircle />
@@ -198,7 +198,7 @@ export default function PrimarySearchAppBar() {
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
-              aria-haspopup="true"
+              popup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
@@ -209,7 +209,7 @@ export default function PrimarySearchAppBar() {
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
-              aria-haspopup="true"
+              popup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
             >

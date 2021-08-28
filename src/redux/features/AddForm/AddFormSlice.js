@@ -6,6 +6,7 @@ export const AddFormSlice = createSlice({
     name: 'AddForm',
     initialState: {
     value: false,
+    warehouseInfo :[]
   },
 
   reducers : {
@@ -14,12 +15,15 @@ export const AddFormSlice = createSlice({
       },
       handleClose : (state) => {
           state.value = false
-      }  
+      },
+      addWarehouseFun : (state , action) => {
+        state.warehouseInfo.push(action.payload)
+      }
   }
 
 })
 
 
-export const { handleOpen, handleClose  } = AddFormSlice.actions
+export const { handleOpen, handleClose ,addWarehouseFun  } = AddFormSlice.actions
 
 export default AddFormSlice.reducer
